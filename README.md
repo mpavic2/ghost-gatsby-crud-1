@@ -1,6 +1,28 @@
+# Gatsby & Ghost CMS CRUD Aplikacija
+
+Ova aplikacija omogućuje kreiranje, prikaz, ažuriranje i brisanje objava (CRUD funkcionalnosti) koristeći **Gatsby** kao frontend te **Ghost CMS** kao backend za upravljanje sadržajem.
+
+## Preduvjeti
+
+- Node.js (preporučena verzija: 14.x ili novija) - Preuzmi i instaliraj Node.js s [službene stranice](https://nodejs.org/).
+- Gatsby CLI 
+- Ghost CMS lokalno ili udaljeno postavljen
+
+  
 1. **Pripremanje okruženja**
 
+    ```shell
+    # instalacija Gatsby-ja lokalno
+    npm install 
+    npm install -g gatsby-cli
+    ```
+   Ovaj projekt koristi axios za komunikaciju s Ghost API-jem
    ```shell
+   npm install axios
+    ```
+
+     ```shell
+   U direktoriju gdje će se nalaziti CMS pokreće se
     # instalacija Ghost CMS-a lokalno
     ghost install local
     ```
@@ -8,12 +30,6 @@
     ```shell
     # pokretanje Ghost CMS-a
     ghost start
-    ```
-    
-
-    ```shell
-    # instalacija Gatsby-ja lokalno
-    npm install -g gatsby-cli
     ```
 
 1.  **Kreiranje Gatsby mrežnog mjesta.**
@@ -37,6 +53,45 @@
     # dodavanje dodatka koji uključuje Ghost CMS
     npm install gatsby-source-ghost
     ```
+
+1. **CRUD funkcionalnosti**
+   kreiranje objave (create)
+      Opis: Kreiranje novih objava omogućeno je putem Ghost CMS Admin sučelja ili kroz prilagođeno Admin sučelje unutar Gatsby aplikacije.
+
+   Kako koristiti:
+
+   Prijavi se u Ghost Admin sučelje (http://localhost:2368/ghost).
+   Klikni na "New post".
+   Unesi naslov i sadržaj objave.
+   Objavi objavu.
+   Alternativno: U Gatsby aplikaciji može se koristiti prilagođeni AdminPage gdje se mogu unositi naslov i sadržaj objava, a zatim poslati objavu na server pomoću        Ghost API-ja
+
+ Prikaz objava (Read)
+   Opis: Svi objavljeni postovi dostupni su za pregled na glavnoj stranici aplikacije putem Gatsby frontenda.
+
+   Kako koristiti:
+
+   Kada se kreira i objavi objava u Ghost Admin sučelju, Gatsby aplikacija automatski dohvaća i prikazuje sve postove na početnoj stranici (ili na prilagođenoj stranici za popis objava).
+   Postovi se prikazuju pomoću GraphQL upita iz Ghost API-ja.
+
+Ažuriranje objave (Update)
+   Opis: Objave se mogu ažurirati putem Ghost Admin sučelja. Kada se objava izmijeni i ponovno objavi, promjene će automatski biti vidljive na Gatsby frontendu.
+
+   Kako koristiti:
+
+   Pronađi post koji želiš urediti u Ghost Admin sučelju.
+   Uredi naslov i/ili sadržaj objave.
+   Klikni na "Update" kako bi objavio ažurirane promjene.
+   Napomena: Promjene se automatski odražavaju na frontendu nakon što Gatsby ponovno generira stranice s novim podacima.
+
+Brisanje objava (Delete)
+   Opis: Postovi se mogu brisati putem Ghost Admin sučelja ili pomoću prilagođene funkcije u Gatsby aplikaciji.
+
+   Kako koristiti:
+
+   U Ghost Admin sučelju pronađi post koji želiš obrisati.
+   Klikni na opciju "Delete" i potvrdi brisanje.
+   Alternativno: U Gatsby aplikaciji možeš koristiti prilagođeni gumb za brisanje u AdminPage komponenti, koji šalje zahtjev za brisanje objave putem Ghost API-ja.
 
 1.  **Open the source code and start editing!**
 
